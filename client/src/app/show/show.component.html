@@ -1,0 +1,21 @@
+<p *ngFor="let error of error_messages">{{error}}</p>
+<a [routerLink]="['/dashboard']">Go to polls</a>
+<button (click)="logout()" >Logout</button><br>
+<h2>{{poll.question}}? </h2>
+<p>Click the vote button to choose one</p>
+<!-- {{poll.options|json}} -->
+ <table>
+  <tr>
+    <th>Option</th>
+    <th>Current count of votes</th>
+    <th>Action</th>
+  </tr>
+   <tr *ngFor="let option of poll.options | getKeys">
+    <th>{{option[1].content}}</th>
+     <th>{{option[1].votes}}</th>
+     <th><button (click)="vote(option[0] )">Vote</button></th>
+  </tr> 
+</table>
+
+
+ 

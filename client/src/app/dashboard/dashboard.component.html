@@ -1,0 +1,25 @@
+
+<p *ngFor="let error of error_messages">{{error}}</p>
+
+
+<a [routerLink]="['/create']">Create a new Poll</a>
+<button (click)="logout()" >Logout</button><br>
+
+<input type="text" [(ngModel)]="term" placeholder="search">
+
+
+<table>
+<tr>
+  <th>Name</th>
+  <th>Survey Question</th>
+  <th>Date Posted</th>
+  <th>Action</th>
+</tr>
+<tr *ngFor="let poll of polls | searchPolls : term">
+  <td>{{poll._creator.name}}</td>
+  <td><a [routerLink]="['/poll',poll._id]">{{poll.question}}</a>{{poll.question}}</td>
+  <td>{{poll.createdAt | date: 'medium'}}</td>
+  <td><button (click)="delete(poll._id)" *ngIf="poll._creator._id==user._id">Delete</button></td>
+
+</tr>
+</table>

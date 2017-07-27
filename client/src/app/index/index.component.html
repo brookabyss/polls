@@ -1,0 +1,7 @@
+
+<form #userForm="ngForm" novalidate (submit)="onSubmit()">
+  <p>Your name: </p><input type="text" required name="input_name" [(ngModel)]="user.name" #input_name="ngModel">
+  <p *ngIf="!input_name.valid && input_name.touched ">Name field is required</p><br>
+
+  <input type="submit" [disabled]="!userForm.form.valid" value="Enter">
+</form>

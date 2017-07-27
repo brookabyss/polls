@@ -1,0 +1,22 @@
+<p *ngFor="let error of error_messages">{{error}}</p>
+<a [routerLink]="['/dashboard']">Cancel</a>
+<button (click)="logout()" >Logout</button><br>
+<h1>Put the questions and the options here : </h1>
+<form #pollForm="ngForm" novalidate (submit)="onSubmit()">
+  Question: <input type="text" name="input_question" required minlength="8" [(ngModel)]="poll.question" #input_question="ngModel">
+   <p *ngIf="input_question.invalid&&input_question.touched">Question needs to be 8 characters at least</p><br> 
+  Option 1 :<input 
+  type="text" 
+  name="firstOption" 
+  required 
+  minlength="3" 
+  [(ngModel)]="poll.options[1]['content']" 
+  #firstOption="ngModel">
+  <p *ngIf="firstOption.invalid&&firstOption.touched">Question needs to be 3 characters at least</p><br>
+
+  Option 2 :<input 
+  type="text" name="secondOption" required minlength="3" [(ngModel)]="poll.options[2]['content']" #secondOption="ngModel"><p *ngIf="secondOption.invalid&&secondOption.touched">Question needs to be 3 characters at least</p><br>
+  Option 3 :<input type="text" name="thirdOption" required minlength="3" [(ngModel)]="poll.options[3]['content']" #thirdOption="ngModel"><p *ngIf="thirdOption.invalid&&thirdOption.touched">option needs to be 3characters at least</p><br>
+  Option 4 :<input type="text" name="fourthOption" required minlength="3" [(ngModel)]="poll.options[4]['content']" #fourthOption="ngModel"><p *ngIf="fourthOption.invalid&&fourthOption.touched">option needs to be 3characters at least</p><br>
+  <input type="submit" [disabled]="!pollForm.valid" value="Create Poll">
+</form>
